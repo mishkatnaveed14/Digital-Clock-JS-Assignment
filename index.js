@@ -37,16 +37,16 @@ function animateParticles() {
 }
 animateParticles();
 
-// Main Clock & App Logic
+// clock
 let currentMode = 'clock';
 let is24Hour = false;
 
-// Stopwatch State
+// Stopwatch 
 let swInterval = null;
 let swTime = 0;
 let swRunning = false;
 
-// Timer State
+// Timer 
 let tmrInterval = null;
 let tmrTotalSecs = 0;
 let tmrRemSecs = 0;
