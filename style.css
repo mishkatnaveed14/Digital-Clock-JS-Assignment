@@ -299,13 +299,13 @@ body {
   stroke: url(#neonGrad);
   stroke-width: 4;
   stroke-linecap: round;
-  stroke-dasharray: 289; /* 2 * PI * 46 */
+  stroke-dasharray: 289;
   stroke-dashoffset: 0;
   transition: stroke-dashoffset 0.2s ease-out;
   filter: drop-shadow(0 0 8px var(--cyan-neon));
 }
 
-/* Dynamic Controls Footer */
+
 .controls-area {
   display: flex;
   justify-content: center;
