@@ -1,101 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title> Digital Clock</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> Digital Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Plus+Jakarta+Sans:wght@500;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
-  <canvas id="bgCanvas"></canvas>
-  <div class="bg-orb orb-primary"></div>
-  <div class="bg-orb orb-secondary"></div>
-  <main class="clock-card">
-    <header class="mode-bar">
-      <button class="mode-tab active" data-mode="clock">
-        <i class="fa-regular fa-clock"></i> <span>CLOCK</span>
-      </button>
-      <button class="mode-tab" data-mode="stopwatch">
-        <i class="fa-solid fa-stopwatch"></i> <span>STOPWATCH</span>
-      </button>
-      <button class="mode-tab" data-mode="timer">
-        <i class="fa-solid fa-hourglass-half"></i> <span>TIMER</span>
-      </button>
-    </header>
-    <!-- mini status bar -->
-    <div class="status-header">
-      <div class="date-badge">
-        <i class="fa-regular fa-calendar-days"></i>
-        <span id="dateText">THU, JUL 23</span>
-      </div>
-      <button class="format-toggle" id="formatToggle" title="Toggle 12h/24h Format">
-        <span id="formatText">12H</span>
-      </button>
-    </div>
-    <section class="display-panel">
-    
-      <!--CLOCK -->
-      <div class="view-screen active" id="clockView">
-        <div class="time-readout">
-          <div class="digits-primary">
-            <span id="clockHours">00</span><span class="colon-blink">:</span><span id="clockMins">00</span>
-          </div>
-          <div class="digits-secondary">
-            <span class="seconds" id="clockSecs">00</span>
-            <span class="ampm" id="clockAmpm">AM</span>
-          </div>
+    <canvas id="bgCanvas"></canvas>
+    <div class="bg-orb orb-primary"></div>
+    <div class="bg-orb orb-secondary"></div>
+    <main class="clock-card">
+        <header class="mode-bar">
+            <button class="mode-tab active" data-mode="clock">
+                <i class="fa-regular fa-clock"></i> <span>CLOCK</span>
+            </button>
+            <button class="mode-tab" data-mode="stopwatch">
+                <i class="fa-solid fa-stopwatch"></i> <span>STOPWATCH</span>
+            </button>
+            <button class="mode-tab" data-mode="timer">
+                <i class="fa-solid fa-hourglass-half"></i> <span>TIMER</span>
+            </button>
+        </header>
+        <!-- mini status bar -->
+        <div class="status-header">
+            <div class="date-badge">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span id="dateText">THU, JUL 23</span>
+            </div>
+            <button class="format-toggle" id="formatToggle" title="Toggle 12h/24h Format">
+                <span id="formatText">12H</span>
+            </button>
         </div>
-      </div>
+        <section class="display-panel">
 
-      <!-- MODE 2: STOPWATCH -->
-      <div class="view-screen" id="swView">
-        <div class="time-readout">
-          <div class="digits-primary">
-            <span id="swMins">00</span><span>:</span><span id="swSecs">00</span>
-          </div>
-          <div class="digits-secondary">
-            <span class="seconds" id="swMs">.00</span>
-          </div>
-        </div>
-      </div>
+            <!--CLOCK -->
+            <div class="view-screen active" id="clockView">
+                <div class="time-readout">
+                    <div class="digits-primary">
+                        <span id="clockHours">00</span><span class="colon-blink">:</span><span id="clockMins">00</span>
+                    </div>
+                    <div class="digits-secondary">
+                        <span class="seconds" id="clockSecs">00</span>
+                        <span class="ampm" id="clockAmpm">AM</span>
+                    </div>
+                </div>
+            </div>
 
-      <!-- MODE 3: TIMER -->
-      <div class="view-screen" id="timerView">
-        <div class="timer-input-wrap" id="timerInputs">
-          <input type="number" id="inputMins" min="0" max="99" placeholder="MM" value="05">
-          <span>:</span>
-          <input type="number" id="inputSecs" min="0" max="59" placeholder="SS" value="00">
-        </div>
-        <div class="time-readout hidden" id="timerDisplay">
-          <div class="digits-primary">
-            <span id="tmrMins">00</span><span>:</span><span id="tmrSecs">00</span>
-          </div>
-        </div>
-      </div>
+            <!-- MODE 2: STOPWATCH -->
+            <div class="view-screen" id="swView">
+                <div class="time-readout">
+                    <div class="digits-primary">
+                        <span id="swMins">00</span><span>:</span><span id="swSecs">00</span>
+                    </div>
+                    <div class="digits-secondary">
+                        <span class="seconds" id="swMs">.00</span>
+                    </div>
+                </div>
+            </div>
 
-      <!-- Interactive Circular Progress HUD -->
-      <svg class="ring-svg" viewBox="0 0 100 100">
-        <defs>
-          <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00f2fe" />
-            <stop offset="100%" stop-color="#4facfe" />
-          </linearGradient>
-        </defs>
-        <circle class="ring-bg" cx="50" cy="50" r="46" />
-        <circle class="ring-progress" id="progressRing" cx="50" cy="50" r="46" />
-      </svg>
-    </section>
+            <!-- MODE 3: TIMER -->
+            <div class="view-screen" id="timerView">
+                <div class="timer-input-wrap" id="timerInputs">
+                    <input type="number" id="inputMins" min="0" max="99" placeholder="MM" value="05">
+                    <span>:</span>
+                    <input type="number" id="inputSecs" min="0" max="59" placeholder="SS" value="00">
+                </div>
+                <div class="time-readout hidden" id="timerDisplay">
+                    <div class="digits-primary">
+                        <span id="tmrMins">00</span><span>:</span><span id="tmrSecs">00</span>
+                    </div>
+                </div>
+            </div>
 
-    <!-- DYNAMIC CONTROLS -->
-    <footer class="controls-area" id="controlsArea">
-      <!-- Injected Dynamically via JS -->
-    </footer>
+            <!-- Interactive Circular Progress HUD -->
+            <svg class="ring-svg" viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#00f2fe" />
+                        <stop offset="100%" stop-color="#4facfe" />
+                    </linearGradient>
+                </defs>
+                <circle class="ring-bg" cx="50" cy="50" r="46" />
+                <circle class="ring-progress" id="progressRing" cx="50" cy="50" r="46" />
+            </svg>
+        </section>
 
-  </main>
+        <!-- DYNAMIC CONTROLS -->
+        <footer class="controls-area" id="controlsArea">
+            <!-- Injected Dynamically via JS -->
+        </footer>
 
-  <script src="./index.js"></script>
+    </main>
+
+    <script src="./index.js"></script>
 </body>
+
 </html>
