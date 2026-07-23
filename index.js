@@ -121,7 +121,7 @@ function updateClock() {
   }
 }
 
-// Format Toggle Event
+//Toggle 
 formatToggle.addEventListener('click', () => {
   is24Hour = !is24Hour;
   formatText.textContent = is24Hour ? '24H' : '12H';
@@ -218,7 +218,6 @@ function resetTimer() {
   renderControls();
 }
 
-// Dynamic Action Buttons
 function renderControls() {
   controlsArea.innerHTML = '';
 
@@ -258,7 +257,6 @@ function updateProgressRing() {
   }
 }
 
-// Init
 setInterval(updateClock, 1000);
 updateClock();
 renderControls();
