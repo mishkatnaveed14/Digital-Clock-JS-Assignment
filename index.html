@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <!-- MODE 2: STOPWATCH -->
+            <!--STOPWATCH -->
             <div class="view-screen" id="swView">
                 <div class="time-readout">
                     <div class="digits-primary">
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <!-- MODE 3: TIMER -->
+            <!-- TIMER -->
             <div class="view-screen" id="timerView">
                 <div class="timer-input-wrap" id="timerInputs">
                     <input type="number" id="inputMins" min="0" max="99" placeholder="MM" value="05">
@@ -79,8 +79,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Interactive Circular Progress HUD -->
             <svg class="ring-svg" viewBox="0 0 100 100">
                 <defs>
                     <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -92,10 +90,7 @@
                 <circle class="ring-progress" id="progressRing" cx="50" cy="50" r="46" />
             </svg>
         </section>
-
-        <!-- DYNAMIC CONTROLS -->
         <footer class="controls-area" id="controlsArea">
-            <!-- Injected Dynamically via JS -->
         </footer>
 
     </main>
