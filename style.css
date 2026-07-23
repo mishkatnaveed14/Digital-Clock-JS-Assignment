@@ -1,0 +1,307 @@
+:root {
+  --bg-dark: #090d16;
+  --card-bg: rgba(18, 24, 38, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  
+  --cyan-neon: #00f2fe;
+  --purple-neon: #9d4edd;
+  --text-primary: #ffffff;
+  --text-muted: #64748b;
+  --danger: #ff0055;
+
+  --shadow-glow: 0 0 25px rgba(0, 242, 254, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--bg-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: clamp(8px, 2vh, 16px);
+}
+
+/* Background Animated Orbs */
+.bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb-primary {
+  width: min(50vw, 320px);
+  height: min(50vw, 320px);
+  background: var(--cyan-neon);
+  top: -5%;
+  left: -5%;
+}
+
+.orb-secondary {
+  width: min(50vw, 320px);
+  height: min(50vw, 320px);
+  background: var(--purple-neon);
+  bottom: -5%;
+  right: -5%;
+}
+
+/* Glassmorphism Card Container */
+.clock-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  max-height: 96vh;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: clamp(20px, 4vw, 32px);
+  padding: clamp(14px, 2.5vh, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vh, 18px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Tab Switcher Header */
+.mode-bar {
+  display: flex;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  gap: 4px;
+}
+
+.mode-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
+  font-weight: 700;
+  padding: 8px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.mode-tab.active {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(157, 78, 221, 0.2));
+  color: var(--text-primary);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Status Sub-Header */
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.date-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cyan-neon);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.format-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.format-toggle:hover {
+  background: rgba(0, 242, 254, 0.2);
+}
+
+/* Main Interactive Ring Panel */
+.display-panel {
+  position: relative;
+  width: clamp(180px, 46vw, 230px);
+  height: clamp(180px, 46vw, 230px);
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.view-screen {
+  display: none;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+}
+
+.view-screen.active {
+  display: block;
+}
+
+.digits-primary {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2rem, 7.5vw, 2.7rem);
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.digits-secondary {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.seconds {
+  color: var(--cyan-neon);
+}
+
+.ampm {
+  color: var(--purple-neon);
+  font-weight: 700;
+}
+
+.colon-blink {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* Timer Input Formatting */
+.timer-input-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.timer-input-wrap input {
+  width: 50px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--cyan-neon);
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  color: var(--text-primary);
+  text-align: center;
+  outline: none;
+}
+
+.timer-input-wrap span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Circular SVG Visualizer */
+.ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.04);
+  stroke-width: 4;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: url(#cyanPurpleGradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 289; /* 2 * PI * 46 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.2s linear;
+  filter: drop-shadow(0 0 6px var(--cyan-neon));
+}
+
+/* Dynamic Controls Footer */
+.controls-area {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+}
+
+.ctrl-btn {
+  padding: 10px 20px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.ctrl-btn.primary {
+  background: linear-gradient(135deg, var(--cyan-neon), #00b4d8);
+  color: var(--bg-dark);
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+}
+
+.ctrl-btn.danger {
+  border-color: rgba(255, 0, 85, 0.4);
+  color: var(--danger);
+}
