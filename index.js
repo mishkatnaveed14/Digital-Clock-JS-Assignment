@@ -52,7 +52,6 @@ let tmrTotalSecs = 0;
 let tmrRemSecs = 0;
 let tmrRunning = false;
 
-// Selectors
 const dateText = document.getElementById('dateText');
 const formatToggle = document.getElementById('formatToggle');
 const formatText = document.getElementById('formatText');
@@ -77,7 +76,6 @@ const progressRing = document.getElementById('progressRing');
 const controlsArea = document.getElementById('controlsArea');
 const CIRCUMFERENCE = 289;
 
-// Mode Switching Engine
 document.querySelectorAll('.mode-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
@@ -94,7 +92,7 @@ document.querySelectorAll('.mode-tab').forEach(tab => {
   });
 });
 
-// Live Clock Renderer
+// Live Clock 
 function updateClock() {
   const now = new Date();
   const options = { weekday: 'short', month: 'short', day: '2-digit' };
