@@ -356,7 +356,6 @@ body {
   color: var(--danger);
   background: rgba(255, 42, 109, 0.08);
 }
-
 .ctrl-btn.danger:hover {
   background: rgba(255, 42, 109, 0.2);
   box-shadow: 0 0 15px rgba(255, 42, 109, 0.3);

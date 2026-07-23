@@ -256,7 +256,6 @@ function updateProgressRing() {
     progressRing.style.strokeDashoffset = CIRCUMFERENCE - (progress * CIRCUMFERENCE);
   }
 }
-
 setInterval(updateClock, 1000);
 updateClock();
 renderControls();
