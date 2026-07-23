@@ -34,8 +34,6 @@ body {
   padding: clamp(10px, 3vh, 20px);
   position: relative;
 }
-
-/* Background Canvas */
 #bgCanvas {
   position: absolute;
   inset: 0;
@@ -44,8 +42,6 @@ body {
   z-index: 0;
   pointer-events: none;
 }
-
-/* Background Ambient Orbs */
 .bg-orb {
   position: absolute;
   border-radius: 50%;
@@ -77,8 +73,6 @@ body {
   0% { transform: translate(0, 0) scale(1); }
   100% { transform: translate(30px, 30px) scale(1.1); }
 }
-
-/* Glassmorphic Container Card */
 .clock-card {
   position: relative;
   z-index: 1;
@@ -103,8 +97,6 @@ body {
 .clock-card:hover {
   border-color: var(--glow-border);
 }
-
-/* Tab Switcher Header */
 .mode-bar {
   display: flex;
   background: rgba(0, 0, 0, 0.4);
@@ -140,7 +132,6 @@ body {
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-/* Status Sub-Header */
 .status-header {
   display: flex;
   justify-content: space-between;
@@ -178,7 +169,6 @@ body {
   box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
 }
 
-/* Interactive Display Ring Panel */
 .display-panel {
   position: relative;
   width: clamp(190px, 48vw, 240px);
