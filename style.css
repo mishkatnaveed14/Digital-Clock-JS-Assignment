@@ -279,7 +279,6 @@ body {
   display: none !important;
 }
 
-/* SVG Circular Ring Indicator */
 .ring-svg {
   position: absolute;
   inset: 0;
